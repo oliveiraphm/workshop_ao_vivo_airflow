@@ -3,6 +3,7 @@
 import streamlit as st
 import pandas as pd
 import subprocess
+import os
 
 # Função para carregar os dados do arquivo CSV
 def load_data():
@@ -11,12 +12,16 @@ def load_data():
 
 # Função para executar o script Python
 def run_python_script():
-    subprocess.run("poetry run python pipeline/pipeline.py")
-
-
+    print(os.getcwd())
+    os.chdir("./pipeline/")
+    print(os.getcwd())
+    subprocess.run(["python", "pipeline.py"])
+    os.chdir("/home/oliveiraphm/jornada/workshop_ao_vivo_airflow/frontend")
+    print(os.getcwd())
 # Layout do aplicativo Streamlit
 def main():
     st.title("Visualização de Logs e Execução de Scripts")
+    os.chdir("/home/oliveiraphm/jornada/workshop_ao_vivo_airflow/frontend")
     st.image("pics/elyflow.png")
 
     # Carregar os dados do arquivo CSV
